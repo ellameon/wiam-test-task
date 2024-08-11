@@ -1,0 +1,1 @@
+export type PlacesOfWork = { places: string[ ] }
