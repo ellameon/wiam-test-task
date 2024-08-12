@@ -91,6 +91,7 @@ module.exports = function (webpackEnv) {
   const isEnvDevelopment = webpackEnv === 'development';
   const isEnvProduction = webpackEnv === 'production';
 
+
   // Variable used for enabling profiling in Production
   // passed into alias object. Uses a flag if passed into the build command
   const isEnvProductionProfile =
@@ -188,6 +189,13 @@ module.exports = function (webpackEnv) {
 
   return {
     target: ['browserslist'],
+
+    devServer: {
+      historyApiFallback: true,
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      port: 3000
+    },
     // Webpack noise constrained to errors and warnings
     stats: 'errors-warnings',
     mode: isEnvProduction ? 'production' : isEnvDevelopment && 'development',
@@ -203,7 +211,7 @@ module.exports = function (webpackEnv) {
     entry: paths.appIndexJs,
     output: {
       // The build folder.
-      path: paths.appBuild,
+      path: path.resolve(__dirname, 'dist'),
       // Add /* filename */ comments to generated require()s in the output.
       pathinfo: isEnvDevelopment,
       // There will be one main bundle, and one file per asynchronous chunk.
