@@ -8,7 +8,15 @@ function App() {
 
   return (
     <div style={{height: "100vh"}}>
-      <Router/>
+      <div className={"container h-100"}>
+        <div className={"row justify-content-md-center h-100"}>
+          <div className={"col-6 justify-content-center d-flex align-items-center"}>
+            <div className={"card w-75"}>
+              <Router/>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

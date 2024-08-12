@@ -751,6 +751,7 @@ module.exports = function (webpackEnv) {
             rules: {
               ...(!hasJsxRuntime && {
                 'react/react-in-jsx-scope': 'error',
+                'react-hooks/exhaustive-deps': 'off',
               }),
             },
           },

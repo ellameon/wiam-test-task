@@ -1,16 +1,15 @@
-import { LoanStore, LoanStoreError } from "../types";
+export function validate(formClass: string) {
+  const forms = document.querySelectorAll<HTMLFormElement>(formClass);
 
-export function validate(store: LoanStore, fields: (keyof LoanStore)[]): LoanStoreError[] {
-  const errors: LoanStoreError[] = [];
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
 
-  fields.forEach(field => {
-    if (!store[ field ]) {
-      errors.push({
-        name: field,
-        message: `Поле ${field} должно быть заполнено.`
-      });
-    }
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+
+      form.classList.add('was-validated');
+    }, false);
   });
-
-  return errors;
 }

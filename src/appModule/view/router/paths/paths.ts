@@ -1,9 +1,9 @@
 const indexPath = "/";
 
 const formPath = {
-  personalData: "/personal",
-  addressAndPlaceOfWork: "/address",
-  loanParameters: "/loan",
+  personalData: "personal",
+  addressAndPlaceOfWork: "address",
+  loanParameters: "loan",
 };
 
 
