@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import { observer } from "mobx-react-lite";
 import { LoanStore } from "../../../types";
 import { modifyLoan } from "../../../service";
-import { validate } from "../../../utils";
+import { formatPhone, validate } from "../../../utils";
 import { loanStore } from "../../../store";
 
 
@@ -25,19 +25,30 @@ export const PersonalData = observer(function PersonalData() {
         Личные данные
       </div>
       <form className={"card-body personal"} onSubmit={onClickNext} noValidate>
-        <label htmlFor="phone" className="form-label">Телефон</label>
+        <label htmlFor="phone" className="form-label">
+          Телефон
+          <span className="badge text-danger ps-1">
+            *
+          </span>
+        </label>
         <input type="tel" className="form-control" id="phone"
                pattern="0\d{3} \d{3} \d{3}"
                placeholder="0XXX XXX XXX"
                title="Введите номер в формате 0XXX XXX XXX"
                required
                defaultValue={loanStore.phone || ""}
-               onChange={(event) => onChange("phone", event.target.value)}
+               value={formatPhone(loanStore.phone || "")}
+               onChange={(event) => onChange("phone", formatPhone(event.target.value))}
         />
         <div className="invalid-feedback">
           Введите телефон.
         </div>
-        <label htmlFor="name" className="form-label">Имя</label>
+        <label htmlFor="name" className="form-label">
+          Имя
+          <span className="badge text-danger ps-1">
+            *
+          </span>
+        </label>
         <input
           type="text"
           className="form-control"
@@ -49,7 +60,12 @@ export const PersonalData = observer(function PersonalData() {
         <div className="invalid-feedback">
           Введите имя.
         </div>
-        <label htmlFor="surname" className="form-label">Фамилия</label>
+        <label htmlFor="surname" className="form-label">
+          Фамилия
+          <span className="badge text-danger ps-1">
+            *
+          </span>
+        </label>
         <input
           type="text"
           className="form-control"
@@ -61,7 +77,12 @@ export const PersonalData = observer(function PersonalData() {
         <div className="invalid-feedback">
           Введите фамилию.
         </div>
-        <label htmlFor="sex" className="form-label">Пол</label>
+        <label htmlFor="sex" className="form-label">
+          Пол
+          <span className="badge text-danger ps-1">
+            *
+          </span>
+        </label>
         <select
           className="form-select"
           id="sex"

@@ -31,7 +31,12 @@ export const AddressAndPlaceOfWork = observer(function AddressAndPlaceOfWork() {
         Адрес и место работы
       </div>
       <form className={"card-body address"} onSubmit={onClickNext} noValidate>
-        <label htmlFor="address" className="form-label">Адрес</label>
+        <label htmlFor="address" className="form-label">
+          Адрес
+          <span className="badge text-danger ps-1">
+            *
+          </span>
+        </label>
         <input
           type="text"
           className="form-control"
@@ -43,7 +48,12 @@ export const AddressAndPlaceOfWork = observer(function AddressAndPlaceOfWork() {
         <div className="invalid-feedback">
           Введите адрес.
         </div>
-        <label htmlFor="placeOfWork" className="form-label">Место работы</label>
+        <label htmlFor="placeOfWork" className="form-label">
+          Место работы
+          <span className="badge text-danger ps-1">
+            *
+          </span>
+        </label>
         <select
           className="form-select"
           id="placeOfWork"

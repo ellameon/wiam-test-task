@@ -10,6 +10,7 @@ export const LoanParameters = observer(function LoanParameters() {
 
   const navigate = useNavigate();
 
+  // тут используем валидацию через useState, потому что input type="range" не поддерживает валидацию силами бутстрапа
   const [termError, setTermError] = useState(false)
   const [sumError, setSumError] = useState(false)
 
@@ -54,7 +55,14 @@ export const LoanParameters = observer(function LoanParameters() {
       </div>
       <div className={"card-body loan"}>
         <label htmlFor="loanSum"
-               className="form-label">{`Сумма займа ${loanStore.loanSum ? "- $" : ""}${loanStore.loanSum ? loanStore.loanSum : ""}`}</label>
+               className="form-label">
+          {`Сумма займа ${loanStore.loanSum ? "- $" : ""}${loanStore.loanSum ? loanStore.loanSum : ""}`}
+          {!loanStore.loanSum &&
+            <span className="badge text-danger ps-1">
+            *
+          </span>
+          }
+        </label>
         <input
           type="range"
           className="form-range"
@@ -72,7 +80,14 @@ export const LoanParameters = observer(function LoanParameters() {
           </div>
         }
         <label htmlFor="loanTerm"
-               className="form-label">{`Срок займа ${loanStore.loanTerm ? loanStore.loanTerm : ""} ${loanStore.loanTerm ? "дней" : ""}`}</label>
+               className="form-label">
+          {`Срок займа ${loanStore.loanTerm ? loanStore.loanTerm : ""} ${loanStore.loanTerm ? "дней" : ""}`}
+          {!loanStore.loanTerm &&
+            <span className="badge text-danger ps-1">
+            *
+          </span>
+          }
+        </label>
         <input
           type="range"
           className="form-range"
